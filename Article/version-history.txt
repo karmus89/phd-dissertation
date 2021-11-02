@@ -1,0 +1,12 @@
+Version 1.2
+-Fixed a problem with default document class options.
+-Fixed the sorting of own publications in the list of
+references.
+-NOTICE: publication sorting mechanism in v1.2 is
+incompatible with that in earlier versions.
+
+Version 1.1
+-Added template for appencides.
+
+Version 1.0
+-First published template.

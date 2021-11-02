@@ -1,0 +1,228 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Congratulations, you've made an excellent choice
+%% of writing your Tampere University dissertation using
+%% the LaTeX system. This document attempts to be
+%% as complete a template as possible to let you focus
+%% on the most important part: the writing itself.
+%% Thus the details regarding the visual appearance
+%% have already been worked out for you!
+%%
+%% I sincerely hope you will find this template useful
+%% in completing your dissertation project. I've tried to
+%% add comments (followed by the % sign) to clarify
+%% the structure and purpose of some of the commands.
+%% Most of the magic happens in the file
+%% taudissertation.cls, which you are more than welcome
+%% to take a look at. Just refrain from editing it
+%% in the most crucial versions of the dissertation!
+%%
+%% I wish you and your dissertation project the best
+%% of luck! If this template causes you trouble along
+%% the way or if you've any suggestions for improving it,
+%% please contact me via email at
+%% 
+%% ville.koljonen (at) tuni.fi.
+%%
+%% Yours,
+%%
+%% Ville Koljonen
+%% 5th February 2019
+%%
+%% PS. This template or its associated class file don't
+%% come with a warranty. The content is provided as is,
+%% without even the implied promise of fitness to the
+%% mentioned purpose. You, as the author of the dissertation,
+%% are responsible for the entire work, including the
+%% provided material. No one else is liable to you for
+%% any damage inflicted on you or your thesis, were it
+%% caused by using this template or not.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% INSTRUCTIONS FOR COMPILING THE DOCUMENT %%%%%
+%% Overleaf: just click Recompile.
+%% Terminal:
+%%  1. pdflatex main.tex
+%%  2. makeindex -s main.ist -t main.glg -o main.gls main.glo
+%%  3. biber main
+%%  4. pdflatex main.tex
+%%  5. pdflatex main.tex
+%% Similar sequence of commands is also required
+%% in LaTeX specific editors.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% PREAMBLE %%%%%
+
+%%%%% Document class declaration.
+% The possible optional arguments are
+%   finnish - thesis in Finnish (default)
+%   english - thesis in English
+%   numeric - citations in numeric style (default)
+%   authoryear - citations in author-year style
+% Example: \documentclass[english, authoryear]{tauthesis}
+%          thesis in English with author-year citations
+\documentclass[english]{taudissertation}
+
+% The glossaries package throws a warning:
+% No language module detected for 'finnish'.
+% You can safely ignore this. All other
+% warnings should be taken care of!
+
+%%%%% Your packages.
+% Before adding packages, see if they can be found
+% in taudissertation.cls already. If you're not sure
+% that you need a certain package, don't include it
+% in the document! This can dramatically reduce
+% compilation time.
+
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{lineno}
+\usepackage{rotating}
+\usepackage{array,multirow,makecell}
+\usepackage[utf8]{inputenc}
+
+%%%%% Your commands.
+
+\usepackage{hyperref}
+\def\UrlBreaks{\do\/\do-}
+
+% Print verbatim LaTeX commands
+% \newcommand{\verbcommand}[1]{\texttt{\textbackslash #1}}
+
+%%%%% Glossary information.
+\loadglsentries{tex/glossary.tex}
+\makeglossaries
+
+%%%%% Citation information.
+
+% Use a separate .bib file to store bibliographic
+% information relating to own publications.
+% If you're writing a monograph, simply comment
+% this out.
+\addbibresource{publications/publications.bib}
+
+% References for the dissertation.
+\addbibresource{tex/references.bib}
+
+\hypersetup{hidelinks}
+
+\begin{document}
+
+%%%%% FRONT MATTER %%%%%
+
+\frontmatter
+
+% Enter the title and a possible subtitle
+% of your work along with your name here.
+\title{Feasibility of remote sensing based deep learning in crop yield prediction}
+\author{Petteri Nevavuori}
+
+% Notice that this is only included for
+% convenience, use the separate title page
+% template to produce the final book cover pages.
+\maketitle
+
+% Write the dedication into a separate file.
+% Comment out if not applicable.
+\dedication{tex/dedication.tex}
+
+% Write either 'Preface' ('Esipuhe') or
+% 'Acknowledgements' ('Kiitokset').
+% Write the title of this section as the first
+% argument and the file name as the second.
+\preface{Preface/Acknowledgements}{tex/preface.tex}
+
+% Write the abstracts, the first one in the
+% main language of the dissertation.
+% Comment the other one out if not applicable
+% (e.g. international students).
+\abstract{tex/abstract.tex}
+% \otherabstract{tex/otherabstract.tex}
+
+% Automatically updating ToC.
+\tableofcontents
+
+% Print lists of figures, tables and programs,
+% if necessary. Otherwise comment out.
+% Use listings package for all code listings.
+\listoffigures
+\listoftables
+% \lstlistoflistings
+
+% Print a glossary of abbreviations, if necessary.
+% Otherwise comment out.
+\glossary
+
+
+% Print the list of original publications.
+% The format of the bibliographic information
+% is similar to the entries in the bibliography.
+% Comment out if writing a monograph.
+\listofpublications
+% \clearpage
+
+%%%%% MAIN MATTER %%%%%
+
+\mainmatter
+
+% Write each chapter into a separate file.
+% Add a \label right after the chapter name
+% if you need to reference it later.
+
+\chapter{Introduction}
+\label{ch:introduction}
+\input{tex/ch_1_introduction.tex}
+
+\chapter{Data-based smart farming}
+\label{ch:smart-farming}
+\input{tex/ch_2_smart_farming.tex}
+
+\chapter{Spatiotemporal deep learning in agriculture}
+\label{ch:dl-in-agriculture}
+\input{tex/ch_3_dl_in_agriculture.tex}
+
+\chapter{Crop yield prediction with deep learning}
+\label{ch:crop-yield-prediction}
+\input{tex/ch_4_crop_yield_prediction.tex}
+
+\chapter{Conclusions and discussion}
+\label{ch:conclusions}
+\input{tex/ch_5_conclusions.tex}
+
+% Print the list of references.
+\printbibliography[heading=bibintoc, notkeyword={thisdissertation}]
+
+% Write the appendices as chapters between
+% \begin{appendices} and \end{appendices}.
+
+% \begin{appendices}
+
+% \chapter{Appendix}
+% \label{ch:appendix}
+% \input{tex/appendix.tex}
+
+% \end{appendices}
+
+%%%%% PUBLICATION MATTER %%%%%
+% Comment this part out completely,
+% if writing a monograph.
+
+\publicationmatter
+
+% Include the publications using the command
+%
+% \publication{<citeID>}{<path/to/article/pdf>}
+%
+% This automatically prints the publication
+% cover pages and appends the article pdf
+% to this dissertation. Remember to include
+% them in the same order as in the list of
+% publications!
+
+\publication{article1}{publications/article-1.pdf}
+\publication{article2}{publications/article-2.pdf}
+\publication{article3}{publications/article-3.pdf}
+\publication{article4}{publications/article-4.pdf}
+\publication{article5}{publications/article-5.pdf}
+
+\end{document}
